@@ -1,36 +1,38 @@
 
-REGISTER
-
+## REGISTER
+```json 
 {
     "message": "User created successfully"
 }
+```
 
 
-LOGIN
-
+## LOGIN
+```json 
 {
     "status": "SUCCESS",
     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiaWF0IjoxNjg1MTA5MTAzLCJleHAiOjE2ODUxMTA5MDN9.rBVWv6fCJhrRX1ypwrIJGt65htP72OBvy23ku7KZv5Y"
 }
+```
+Token akan expired jika kita tidak memperbaruinya 
 
 
-
-CREATE TODO
+## CREATE TODO
 Method : POST
 Endpoint : /todolist
 Authorization: Bearer token
-
+```json 
 {
     "name" : "Sarah",
     "password" : "pasword456",
     "email" : "sarah@example.com",
     "jenis_id" : 10
 }
+```
 
 
-
-CREATE Users
-
+## CREATE Users
+```json 
 {
     "status": "SUCCESS",
     "message": "Create Users",
@@ -43,10 +45,11 @@ CREATE Users
         "createdAt": "2023-05-26T13:50:25.469Z"
     }
 }
+``` 
 
+## GET LIST
 
-GET LIST
-
+```json 
 {
     "status": "SUCCESS",
     "message": "Get User",
@@ -136,10 +139,11 @@ GET LIST
         }
     ]
 }
+```
 
 
-
-UPDATE TODO
+```json 
+## UPDATE TODO
 
 {
     "status": "SUCCESS",
@@ -153,21 +157,22 @@ UPDATE TODO
         "updatedAt": "2023-05-26T14:09:04.284Z"
     }
 }
+```
 
-
-DELETE TODO
-
+## DELETE TODO
+```json 
 {
     "status": "SUCCESS",
     "message": "Delete Todo",
     "data": null
 }
+```
 
-
-DELETE ALL TODO
-
+## DELETE ALL TODO
+```json 
 {
     "status": "SUCCESS",
     "message": "Delete All Todos",
     "data": null
 }
+```
