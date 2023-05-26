@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
+const todolistModel = require('./models').todolist
+
 // get config vars
 dotenv.config();
 
@@ -126,6 +128,21 @@ app.post("/login", (req, res) => {
   res.json(response)
 })
 
+app.get("/todolists", async (req, res) => {
+
+  const todolist = await todolistModel.findAll();
+  const response = {
+      status: "SUCCESS",
+      message: "Get All Company",
+      meta: {
+          total: todolist.length
+      },
+      data: todolist
+  }
+
+  res.status(200).json(response)
+  return
+})
 
 // Endpoint untuk mendapatkan semua user
 app.get("/users", (req, res) => {
