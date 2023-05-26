@@ -142,9 +142,10 @@ Authorization: Bearer token
 ```
 
 
-```json 
-## UPDATE TODO
 
+
+## UPDATE TODO
+```json 
 {
     "status": "SUCCESS",
     "message": "Update Todo",
