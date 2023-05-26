@@ -63,6 +63,39 @@ const dataUsers = [
   }
 ]
 
+let checkData = (req,res, next) => {
+  // console.log(`Saya Mengecek Data Ini : ${req.body}`)
+  next()
+}
+
+let checkUser = (req, res, next) => {
+  let response = {}
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+
+  if (token == null) {
+      response = {
+          status: "ERROR",
+          message: "Authorization Failed"
+      }
+      res.status(401).json(response)
+      return
+  }
+
+  jwt.verify(token, process.env.TOKEN_SECRET, (error, user) => {
+      console.log(error)
+      if (error) {
+          response = {
+              status: "ERROR",
+              message: error
+          }
+          res.status(401).json(response)
+          return
+      }
+      req.user = user
+      next()
+})
+}
 
 // Simpan data user pada array (sementara)
 let users = [];
@@ -128,6 +161,9 @@ app.post("/login", (req, res) => {
   res.json(response)
 })
 
+app.use(checkUser)
+
+// Get a todo
 app.get("/todolist/:id", async (req, res) => {
 
   const todolist = await todolistModel.findAll();
@@ -162,6 +198,85 @@ app.post("/todolist", async (req, res) => {
   res.status(code).json(response)
   return
 })
+
+// Update a todo
+app.put("/todolist", async (req, res) => {
+  const todoId = req.params.id;
+  const { name, password, email, jenis_id } = req.body;
+
+  try {
+    // Find the todo by its ID
+    const todo = await todolistModel.findByPk(todoId);
+
+    if (!todo) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    // Update the todo with the new values
+    todo.name = name;
+    todo.password = password;
+    todo.email = email;
+    todo.jenis_id = jenis_id;
+
+    // Save the updated todo
+    await todo.save();
+
+    // Return the updated todo as the response
+    res.json({
+      status: "SUCCESS",
+      message: "Update Todo",
+      data: todo
+    });
+  } catch (error) {
+    console.error("Error updating todo:", error);
+    res.status(500).json({ error: "An error occurred while updating the todo" });
+  }
+});
+
+// Delete a todo
+app.delete("/todolist", async (req, res) => {
+  const todoId = req.params.id;
+
+  try {
+    // Find the todo by its ID
+    const todo = await todolistModel.findByPk(todoId);
+
+    if (!todo) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    // Delete the todo
+    await todo.destroy();
+
+    res.json({
+      status: "SUCCESS",
+      message: "Delete Todo",
+      data: null
+    });
+  } catch (error) {
+    console.error("Error deleting todo:", error);
+    res.status(500).json({ error: "An error occurred while deleting the todo" });
+  }
+});
+
+// Delete all todos
+app.delete("/todolist", async (req, res) => {
+  try {
+    // Delete all todos
+    await todolistModel.destroy({ truncate: true });
+
+    res.json({
+      status: "SUCCESS",
+      message: "Delete All Todos",
+      data: null
+    });
+  } catch (error) {
+    console.error("Error deleting todos:", error);
+    res.status(500).json({ error: "An error occurred while deleting all todos" });
+  }
+});
+
+app.use(checkData)
 
 // Endpoint untuk mendapatkan semua user
 app.get("/users", (req, res) => {
