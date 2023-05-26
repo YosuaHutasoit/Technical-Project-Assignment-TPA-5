@@ -1,3 +1,4 @@
+
 REGISTER
 
 {
@@ -26,9 +27,25 @@ Authorization: Bearer token
     "jenis_id" : 10
 }
 
-Method : GET
-Endpoint : /todolist/:id
-Authorization: Bearer token
+
+
+CREATE Users
+
+{
+    "status": "SUCCESS",
+    "message": "Create Users",
+    "data": {
+        "id": 11,
+        "name": "Andi",
+        "password": "pasword456",
+        "email": "Andi@example.com",
+        "updatedAt": "2023-05-26T13:50:25.469Z",
+        "createdAt": "2023-05-26T13:50:25.469Z"
+    }
+}
+
+
+GET LIST
 
 {
     "status": "SUCCESS",
@@ -118,23 +135,6 @@ Authorization: Bearer token
             "updatedAt": "2023-05-26T13:38:33.000Z"
         }
     ]
-}
-
-Method : GET
-Endpoint : /todolist
-Authorization: Bearer token
-
-{
-    "status": "SUCCESS",
-    "message": "Create Users",
-    "data": {
-        "id": 11,
-        "name": "Andi",
-        "password": "pasword456",
-        "email": "Andi@example.com",
-        "updatedAt": "2023-05-26T13:50:25.469Z",
-        "createdAt": "2023-05-26T13:50:25.469Z"
-    }
 }
 
 
