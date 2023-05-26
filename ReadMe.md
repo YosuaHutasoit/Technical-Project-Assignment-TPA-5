@@ -4,6 +4,7 @@ REGISTER
 {
     "message": "User created successfully"
 }
+image.png
 
 
 LOGIN
@@ -12,7 +13,7 @@ LOGIN
     "status": "SUCCESS",
     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiaWF0IjoxNjg1MTA5MTAzLCJleHAiOjE2ODUxMTA5MDN9.rBVWv6fCJhrRX1ypwrIJGt65htP72OBvy23ku7KZv5Y"
 }
-
+image.png
 
 
 CREATE TODO
@@ -21,28 +22,19 @@ Endpoint : /todolist
 Authorization: Bearer token
 
 {
-    "name" : "Sarah",
-    "password" : "pasword456",
-    "email" : "sarah@example.com",
-    "jenis_id" : 10
-}
-
-
-
-CREATE Users
-
-{
     "status": "SUCCESS",
     "message": "Create Users",
     "data": {
-        "id": 11,
-        "name": "Andi",
+        "id": 1,
+        "name": "Ananda",
         "password": "pasword456",
-        "email": "Andi@example.com",
-        "updatedAt": "2023-05-26T13:50:25.469Z",
-        "createdAt": "2023-05-26T13:50:25.469Z"
+        "email": "Ananda123@example.com",
+        "updatedAt": "2023-05-26T16:44:15.262Z",
+        "createdAt": "2023-05-26T16:44:15.262Z"
     }
 }
+
+image.png
 
 
 GET LIST
@@ -51,91 +43,37 @@ GET LIST
     "status": "SUCCESS",
     "message": "Get User",
     "meta": {
-        "total": 10
+        "total": 3
     },
     "data": [
         {
             "id": 1,
-            "name": "Yosua",
-            "password": "password123",
-            "email": "yosua112@example.com",
-            "createdAt": "2023-05-26T08:46:11.000Z",
-            "updatedAt": "2023-05-26T08:46:11.000Z"
+            "name": "Ananda",
+            "password": "pasword456",
+            "email": "Ananda123@example.com",
+            "createdAt": "2023-05-26T16:44:15.000Z",
+            "updatedAt": "2023-05-26T16:44:15.000Z"
         },
         {
             "id": 2,
             "name": "Julian",
             "password": "password234",
             "email": "julaun234h@example.com",
-            "createdAt": "2023-05-26T08:46:11.000Z",
-            "updatedAt": "2023-05-26T08:46:11.000Z"
+            "createdAt": "2023-05-26T16:45:47.000Z",
+            "updatedAt": "2023-05-26T16:45:47.000Z"
         },
         {
             "id": 3,
-            "name": "Sarah",
-            "password": "pasword456",
-            "email": "sarah@example.com",
-            "createdAt": "2023-05-26T11:56:03.000Z",
-            "updatedAt": "2023-05-26T11:56:03.000Z"
-        },
-        {
-            "id": 4,
-            "name": "Sarah",
-            "password": "pasword456",
-            "email": "sarah@example.com",
-            "createdAt": "2023-05-26T12:55:24.000Z",
-            "updatedAt": "2023-05-26T12:55:24.000Z"
-        },
-        {
-            "id": 5,
-            "name": "Sarah",
-            "password": "pasword456",
-            "email": "sarah@example.com",
-            "createdAt": "2023-05-26T12:58:35.000Z",
-            "updatedAt": "2023-05-26T12:58:35.000Z"
-        },
-        {
-            "id": 6,
-            "name": "Sarah",
-            "password": "pasword456",
-            "email": "sarah@example.com",
-            "createdAt": "2023-05-26T13:10:41.000Z",
-            "updatedAt": "2023-05-26T13:10:41.000Z"
-        },
-        {
-            "id": 7,
-            "name": "Sarah",
-            "password": "pasword456",
-            "email": "sarah@example.com",
-            "createdAt": "2023-05-26T13:12:21.000Z",
-            "updatedAt": "2023-05-26T13:12:21.000Z"
-        },
-        {
-            "id": 8,
-            "name": null,
-            "password": null,
-            "email": null,
-            "createdAt": "2023-05-26T13:17:12.000Z",
-            "updatedAt": "2023-05-26T13:17:12.000Z"
-        },
-        {
-            "id": 9,
-            "name": "Sarah",
-            "password": "pasword456",
-            "email": "sarah@example.com",
-            "createdAt": "2023-05-26T13:20:59.000Z",
-            "updatedAt": "2023-05-26T13:20:59.000Z"
-        },
-        {
-            "id": 10,
-            "name": "Sarah",
-            "password": "pasword456",
-            "email": "sarah@example.com",
-            "createdAt": "2023-05-26T13:38:33.000Z",
-            "updatedAt": "2023-05-26T13:38:33.000Z"
+            "name": "Yosua",
+            "password": "password123",
+            "email": "yosua112@example.com",
+            "createdAt": "2023-05-26T16:46:06.000Z",
+            "updatedAt": "2023-05-26T16:46:06.000Z"
         }
     ]
 }
+ 
+image.png
 
 
 UPDATE TODO
