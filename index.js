@@ -128,12 +128,12 @@ app.post("/login", (req, res) => {
   res.json(response)
 })
 
-app.get("/todolist", async (req, res) => {
+app.get("/todolist/:id", async (req, res) => {
 
   const todolist = await todolistModel.findAll();
   const response = {
       status: "SUCCESS",
-      message: "Get All Company",
+      message: "Get User",
       meta: {
           total: todolist.length
       },
@@ -141,6 +141,25 @@ app.get("/todolist", async (req, res) => {
   }
 
   res.status(200).json(response)
+  return
+})
+
+app.post("/todolist", async (req, res) => {
+  let response = {}
+  let code = 200
+  const newTodolist = await todolistModel.create({
+          name: req.body.name,
+          password: req.body.password,
+          email: req.body.email,
+          jenis_id: req.body.jenis_id
+      });
+  
+      response = {
+          status: "SUCCESS",
+          message: "Create Users",
+          data: newTodolist
+      }
+  res.status(code).json(response)
   return
 })
 
@@ -205,7 +224,6 @@ app.delete("/users/:id", (req, res) => {
     res.status(404).json({ message: "User not found" });
   }
 });
-
 
 
 // Menambahkan route untuk tampilan selamat datang di web
