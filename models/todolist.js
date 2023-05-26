@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   TodoList.init({
-    nam: DataTypes.STRING,
+    name: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING
   }, {

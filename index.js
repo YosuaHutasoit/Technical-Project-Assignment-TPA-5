@@ -1,5 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+// get config vars
+dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -8,33 +13,33 @@ const PORT = 3000;
 const usersStatic = [
   {
     id: 1,
-    username: "Josh",
-    hobby: "Eat",
-    type_data: "premium"
+    username: "josh",
+    hobby: "Basket",
+    type_data : "Premium"
   },
   {
     id: 2,
-    username: "Sarah",
+    username: "sarah",
     hobby: "Sleep",
-    type_data: "basic"
+    type_data : "Premium"
   },
   {
     id: 3,
     username: "drian",
-    hobby: "Reading",
-    type_data: "premium"
+    hobby: "Renang",
+    type_data : "Premium"
   },
   {
     id: 4,
     username: "ahmad",
     hobby: "Cooking",
-    type_data: "basic"
+    type_data : "Premium"
   },
   {
     id: 5,
     username: "dapid",
-    hobby: "Shopping",
-    type_data: "premium"
+    hobby: "Futsal",
+    type_data : "Premium"
   }
 ];
 
@@ -42,20 +47,17 @@ const dataUsers = [
   {
       "user_id": 11,
       "email": "josh@gmail.com",
-      "password": "12345678",
-      "role": "admin",
+      "password": "12345678"
   },
   {
       "user_id": 12,
       "email": "sarah@gmail.com",
-      "password": "abcdefg",
-      "role": "premium",
+      "password": "abcdefg"
   },
   {
       "user_id": 13,
       "email": "drian@gmail.com",
-      "password": "abcdefg",
-      "role": "basic",
+      "password": "131fadas"
   }
 ]
 
@@ -81,18 +83,48 @@ app.post('/register', (req, res) => {
 });
 
 // Endpoint untuk login
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
+app.post("/login", (req, res) => {
+  let email = req.body.email
+  let password = req.body.password
 
-  // Periksa apakah email dan password cocok dengan data pengguna yang ada
-  const user = dataUsers.find(u => u.email === email && u.password === password);
+  let response = {}
+  let foundUser = {}
 
-  if (user) {
-    res.json({ message: 'Login successful', user });
-  } else {
-    res.status(401).json({ error: 'Invalid users' });
+  for(let i=0;i < dataUsers.length; i++) {
+      if(dataUsers[i].email == email) {
+          foundUser = dataUsers[i]
+      }
   }
-});
+
+  if(Object.keys(foundUser).length == 0) {
+      response = {
+          status: "ERROR",
+          message: "User not Found"
+      }
+      res.status(401).json(response)
+      return
+  }
+
+  if(foundUser.password != password) {
+      response = {
+          status: "ERROR",
+          message: "Combination Email and Password not Match"
+      }
+      res.status(401).json(response)
+      return
+  }
+
+  let jwt_payload = {
+      user_id: foundUser.user_id
+  }
+
+  let access_token = jwt.sign(jwt_payload, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+  response = {
+      status: "SUCCESS",
+      access_token: access_token
+  }
+  res.json(response)
+})
 
 
 // Endpoint untuk mendapatkan semua user
