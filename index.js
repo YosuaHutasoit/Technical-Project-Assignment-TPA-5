@@ -128,7 +128,7 @@ app.post("/login", (req, res) => {
   res.json(response)
 })
 
-app.get("/todolists", async (req, res) => {
+app.get("/todolist", async (req, res) => {
 
   const todolist = await todolistModel.findAll();
   const response = {
