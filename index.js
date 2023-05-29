@@ -200,7 +200,7 @@ app.post("/todolist", async (req, res) => {
 })
 
 // Update a todo
-app.put("/todolist", async (req, res) => {
+app.put("/todolist/:id", async (req, res) => {
   const todoId = req.params.id;
   const { name, password, email, jenis_id } = req.body;
 
@@ -234,7 +234,7 @@ app.put("/todolist", async (req, res) => {
 });
 
 // Delete a todo
-app.delete("/todolist", async (req, res) => {
+app.delete("/todolist/:id", async (req, res) => {
   const todoId = req.params.id;
 
   try {
@@ -260,7 +260,7 @@ app.delete("/todolist", async (req, res) => {
 });
 
 // Delete all todos
-app.delete("/todolist", async (req, res) => {
+app.delete("/todolist/:id", async (req, res) => {
   try {
     // Delete all todos
     await todolistModel.destroy({ truncate: true });
